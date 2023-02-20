@@ -27,6 +27,7 @@ router.post('/create', (req, res, next) => {
     }
     Movie.create(newMovie)
         .then(movie => {
+            console.log(movie)
             res.redirect('/movies/create')
         })
         .catch(err =>next(err))
@@ -43,12 +44,11 @@ router.get('/', (req, res, next) => {
         .catch(err =>next(err))
 })
 
-router.get("/:_id", (req, res, next) => {
+router.get("/:id", (req, res, next) => {
     console.log("req.params:", req.params)
-    const _id = req.params
-    console.log("id:", _id)
-
-    Movie.findById(_id)
+    const {id} = req.params
+    console.log("id:", id)
+    Movie.findById(id)
         .populate("cast")
         .then((movie) => {
             console.log("MovieId:", movie)
