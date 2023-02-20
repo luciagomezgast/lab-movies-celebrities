@@ -28,6 +28,7 @@ router.post('/create', (req, res, next) => {
     Movie.create(newMovie)
         .then(movie => {
             console.log(movie)
+            console.log(movie)
             res.redirect('/movies/create')
         })
         .catch(err =>next(err))
